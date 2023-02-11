@@ -4,7 +4,7 @@ int main() {
     int t;
     cin>>t;
     while(t--){
-        vector<int>sc,sp,result;
+        vector<int>sc,sp;
         int n;
         cin>>n;
         for(int i=0;i<n;i++){
@@ -12,9 +12,8 @@ int main() {
             cin>>scr;
             sc.push_back(scr);
             sp.push_back(1);
-            result.push_back(i+1);
         }
-        int q;
+        int q,result=0;
         cin>>q;
         for(int i=0;i<q;i++){
             int q_v,x,y;
@@ -26,7 +25,7 @@ int main() {
                     sc[x-1]=0;
                     sp[x-1]=sp[x-1]+sp[y-1];
                     sp[y-1]=0;
-                    result[y-1]=result[x-1];
+                    result=x;
                 }
                 else if((sc[x-1]==sc[y-1])||(sp[x-1]==0)||(sp[y-1]==0)){
                     continue;
@@ -36,7 +35,7 @@ int main() {
                     sc[y-1]=0;
                     sp[y-1]=sp[y-1]+sp[x-1];
                     sp[x-1]=0;
-                    result[x-1]=result[y-1];
+                    result=y;
                 }
             }
             else if(q_v==2){
@@ -45,10 +44,9 @@ int main() {
             }
             else if(q_v==3){
                 cin>>x;
-                cout<<result[x-1]<<endl;
+                cout<<result<<endl;
             }
         }
     }
     return 0;
 }
-
